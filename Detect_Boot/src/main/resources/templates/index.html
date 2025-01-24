@@ -11,13 +11,13 @@
     <p>파일 : <input type="file" name="file"></p>
     <input type="button" value=" 비동기 요청 ">
 </form>
-<div id="result">객체탐지결과 및 분석</div>
+<div id="result1">객체탐지결과</div>
+<div id="result2">분석결과</div>
 <a href="ai">실시간 스트리밍</a>
-
 <script type="text/javascript">
     var button = document.querySelector("input[type=button]");
 
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
         var form = document.getElementById("fileUploadForm");
         var form_data = new FormData(form);
         button.disabled = true;
@@ -26,50 +26,39 @@
 
         xhr.open("POST", "http://localhost:5050/java_service", true);
 
-        xhr.onload = function() {
-            if(xhr.status >= 200 && xhr.status < 300) {
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
                 var response = JSON.parse(xhr.responseText);
-                var resultDiv = document.getElementById("result");
+
+                // 객체 탐지 결과 이미지
+                var resultDiv = document.getElementById("result1");
                 resultDiv.innerHTML = response.message + "<br>";
+                var img_src = "data:image/png;base64," + response.image;
+                var img = document.createElement("img");
+                img.src = img_src;
+                resultDiv.appendChild(img);
 
-                // 이미지 처리
-                if (response.image && response.image !== 'undefined' && response.image !== null) {
-                    var img_src = "data:image/jpeg;base64," + response.image;
-                    var img = document.createElement("img");
-                    img.src = img_src;
-                    img.alt = "탐지 결과 이미지";
-                    img.style.maxWidth = "100%";
-                    resultDiv.appendChild(img);
-                } else {
-                    console.error("이미지 데이터를 처리할 수 없습니다.");
-                    alert("이미지 데이터를 처리할 수 없습니다.");
-                }
+                // 분석 결과 그래프
+                var plotDiv = document.getElementById("result2");
+                var plot_src = "data:image/png;base64," + response.plot;
+                var plot = document.createElement("img");
+                plot.src = plot_src;
+                plotDiv.innerHTML = ""; // 이전 내용 초기화
+                plotDiv.appendChild(plot);
 
-                // 그래프 처리
-                if (response.plot && response.plot !== 'undefined' && response.plot !== null) {
-                    var graph_src = "data:image/png;base64," + response.plot;
-                    var graph = document.createElement("img");
-                    graph.src = graph_src;
-                    graph.alt = "탐지 결과 그래프";
-                    graph.style.maxWidth = "100%";
-                    resultDiv.appendChild(graph);
-                } else {
-                    console.error("그래프 데이터를 처리할 수 없습니다.");
-                    alert("그래프 데이터를 처리할 수 없습니다.");
-                }
-
+                button.disabled = false;
             } else {
                 console.error("ERROR: " + xhr.statusText);
                 alert("fail " + xhr.statusText);
                 button.disabled = false;
             }
-        }
+        };
 
-        xhr.onerror = function() {
+        xhr.onerror = function () {
             console.error("ERROR: " + xhr.statusText);
             alert("fail " + xhr.statusText);
             button.disabled = false;
-        }
+        };
         xhr.send(form_data);
     });
 </script>
