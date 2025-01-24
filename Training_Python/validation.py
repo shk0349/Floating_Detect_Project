@@ -3,7 +3,7 @@ from roboflow import Roboflow
 from ultralytics import YOLO
 
 # 2. YOLOv8 모델 로드
-model = YOLO('best.pt')  # 'best.pt'는 PyCharm 프로젝트 폴더 내에 있어야 합니다.
+model = YOLO('ver5.0.pt')  # 'ver5.0.pt'는 PyCharm 프로젝트 폴더 내에 있어야 합니다.
 
 # 3. 동영상 예측
 video_path = '/testyolo.mp4'  # 동영상 파일의 경로를 설정하세요.

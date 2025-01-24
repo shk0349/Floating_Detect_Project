@@ -2,12 +2,16 @@ package edu.mbc.Detect_Boot.Detect_Boot.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.MultipartBodyBuilder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController    //... Python과 통신하는 비동기화 Controller 역할담당
 public class RestRegController {
@@ -37,5 +41,37 @@ public class RestRegController {
 4. Rest Controller에서 비동기 방식으로 Text와 Image를 변환
 5. 비동기 요청 View Page에서 결과를 화면에 출력
 */
+    @RestController
+    @RequestMapping("/api")
+    public class DetectionController {
+
+        @PostMapping("/receive")
+        public ResponseEntity<Map<String, Object>> receiveDetectionResult(@RequestBody Map<String, Object> payload) {
+            String message = (String) payload.get("message");
+            String imageBase64 = (String) payload.get("image");
+            String plotBase64 = (String) payload.get("plot");
+            List<String> detectedClasses = (List<String>) payload.get("detected_classes");
+
+            // 로그 출력
+            System.out.println("Message: " + message);
+            System.out.println("Detected Classes: " + detectedClasses);
+            System.out.println("image: " + imageBase64);
+            System.out.println("plot Classes: " + plotBase64);
+            System.out.println("Image and Plot received as Base64 strings.");
+
+            // 응답 데이터 구성
+            Map<String, Object> response = new HashMap<>();
+            response.put("status", "success");
+            response.put("received_classes", detectedClasses);
+            response.put("image", imageBase64);  // 이미지 추가
+            response.put("plot", plotBase64);    // 그래프 추가
+
+            // 응답 데이터 로그 출력
+            System.out.println("Response Data: " + response);
+
+            // 응답 반환
+            return ResponseEntity.ok(response);
+        }
+    }
 
 }
