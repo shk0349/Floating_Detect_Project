@@ -1,76 +1,117 @@
 @charset "utf-8";
+/* 전체 화면 설정 */
 * {
   margin: 0;
   padding: 0;
-  font-family: "맑은 고딕"
+  box-sizing: border-box;
+  font-family: "맑은 고딕", Arial, sans-serif;
 }
 
-h1{
+/* 전체 컨테이너 */
+#body_container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 헤더 */
+h1 {
+  font-size: 2.5em;
+  color: #333;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* 안내문구 */
+#body_container > div > p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* 이미지 업로드 섹션 */
+#image_upload {
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px dashed #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  max-width: 600px;
+}
+
+#image_upload input[type="file"] {
   display: block;
-  text-align: center;
-  width: 100%;
-  height: 80px;
-  line-height: 80px;
-  text-shadow: 2px 2px 2px #999
-}
-
-footer {
-  height: 100px;
-  margin: auto;
-  background-color: #999
-}
-
-/* table 설정 */
-table{
-  position: absolute;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  top: 50%;
-  width: 80%;
-}
-
-td{
-  text-align: center;
-}
-
-/* 화면 설정 */
-#wrap {
-  width: 100vw;
-  min-width: 600px;
-  height: calc(100vh - 180px);
-  overflow: scroll;
-}
-
-#video {
-  background-color: #faa;
-  width: calc(100% - 500px);
-  min-width: 500px;
-  height: 100%;
-  float: left;
-}
-
-video{
-  display:block;
-  width:80%;
   margin: 10px auto;
+  font-size: 1em;
 }
 
-#todayDetected {
-  position: relative;
-  background-color: #afa;
-  width: 500px;
-  height: 100%;
-  float:right;
+#image_upload input[type="button"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-#totalDetected {
-  position: relative;
-  background-color: #aaf; 
-  width: 500px;
-  height: 100%;
-  float: right;
+#image_upload input[type="button"]:hover {
+  background-color: #0056b3;
 }
 
-.toHide {
-  display: none;
+/* 이미지 결과 컨테이너 */
+#image_container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+/* 객체 탐지 결과 */
+#image_result, #plot_result {
+  flex: 1 1 45%;
+  max-width: 45%;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 결과 섹션 제목 */
+#result1_name p, #result2_name p {
+  font-size: 1.2em;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* 이미지 스타일 */
+#result1 img, #result2 img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 반응형 설정 */
+@media screen and (max-width: 768px) {
+  #image_container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #result1, #result2 {
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
 }

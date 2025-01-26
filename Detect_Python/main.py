@@ -26,8 +26,8 @@ app = FastAPI()
 model = YOLO('관묵_ver.1.0.pt')    # YOLOv8 모델 로드(yolo8n.pt : 모델의 가중치파일)
 
 class DetectionResult(BaseModel):    # pydantic을 사용하여 데이터 모델 정의(응답 데이터 구조화)
-    message : str    # client가 보낸 message
-    image : str    # Base64로 인코딩된 탐지 결과 image
+    message : str
+    image : str
     plot : str
 
 # 객체 탐지함수
