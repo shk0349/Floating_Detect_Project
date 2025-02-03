@@ -6,8 +6,8 @@ button.addEventListener("click", function () {
     button.disabled = true;
 
     var xhr = new XMLHttpRequest();
-
-    xhr.open("POST", "http://localhost:5050/java_service", true);
+ㄴ
+    xhr.open("POST", "http://192.168.0.222:5050/java_service", true);
 
     xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 300) {
