@@ -9,6 +9,7 @@
 |---| ---  |---  | ---      | ---   | ---   |
 |Git|[@jin930303](https://github.com/jin930303)|[@shk0349](https://github.com/shk0349)|[@JakeANam](https://github.com/JakeANam)|[@GwanMuk](https://github.com/GwanMuk)|[@jyj0607040607](https://github.com/jyj0607040607)|
 |E-mail|<dbrwls12@gmail.com>|<shk0349@naver.com>|<nams93627@naver.com>|<mkm1022@naver.com>|<jyj060704@naver.com>|
+|역할|라벨링/모델 훈련/<br> 데이터셋 구성 |라벨링/모델 훈련/<br>데이터셋 구성 |라벨링/모델 훈련/<br>데이터셋 구성|라벨링/모델 훈련/<br>데이터셋 구성 |ppt제작 |
 
 ## 💡사용기술
 
